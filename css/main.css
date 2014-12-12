@@ -302,3 +302,8 @@ textarea {
         page-break-after: avoid;
     }
 }
+
+.table-view {
+    width: 80%;
+    margin: 10% auto;
+}

@@ -1,0 +1,15 @@
+<div class="table-view">
+    <table class="table table-bordered">
+        <tr>
+            <th>File Name</th>
+            <th>File Type</th>
+            <th>Size (Kb)</th>
+            <th>Action</th>
+        </tr>
+        <tr ng-repeat="file in files">
+            <td>{{ file.name }}</td>
+            <td>{{ file.type }}</td>
+            <td>{{ fileSize(file) }}</td>
+        </tr>
+    </table>
+</div>

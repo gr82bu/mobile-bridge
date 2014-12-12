@@ -19,6 +19,7 @@
     "angular": "latest",
     "angular-ui-router": "latest",
     "underscore": "latest",
-    "angular-bootstrap": "latest"
+    "angular-bootstrap": "latest",
+    "angular-facebook": "~0.2.3"
   }
 }
