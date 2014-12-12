@@ -1,0 +1,24 @@
+{
+  "name": "mobile-bridge",
+  "version": "0.0.1",
+  "homepage": "https://github.com/gr82bu/mobile-bridge",
+  "authors": [
+    "gr82bu"
+  ],
+  "license": "MIT",
+  "private": false,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "latest",
+    "angular-ui-router": "latest",
+    "underscore": "latest",
+    "angular-bootstrap": "latest"
+  }
+}
