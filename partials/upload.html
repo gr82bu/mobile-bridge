@@ -1,9 +1,9 @@
-<div style="height:300px;">
-    <div ng-if="!imgSrc">
+<div style="min-height:300px; text-align: center; padding: 20px;">
+    <div ng-if="!img.src" style="margin-top: 20%;">
         <button class="btn btn-default" ng-click="uploadFromPc()">Upload From PC</button>
-        <input type="file" style="display:none" accept="image/*" id="file" name='file' ng-model="imgSrc" input-file-change/>
+        <input type="file" style="display:none" accept="image/*" id="file" name='file' ng-model="img.src" input-file-change/>
     </div>
-    <div ng-if="imgSrc">
-        <img id="imgPreview" src=""/>
+    <div ng-if="img.src">
+        <img id="imgPreview" ng-src="{{img.src}}" style="max-width: 500px;"/>
     </div>
 </div>
