@@ -304,6 +304,16 @@ textarea {
 }
 
 .table-view {
-    width: 80%;
-    margin: 10% auto;
+    width: 70%;
+    margin: 5% auto;
 }
+
+.action {
+    visibility: hidden;
+}
+
+.table-view tr:hover td .action {
+    visibility: visible;
+}
+
+.margin-top-15 { margin-top: 1.5em; }
