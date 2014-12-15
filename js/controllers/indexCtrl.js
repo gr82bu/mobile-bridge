@@ -59,18 +59,4 @@ angular.module('mbApp.controllers').controller('indexCtrl', ['$scope', '$statePa
 			controller: 'uploadCtrl'
 		});
 	};
-
-	$scope.uploadFB = function () {
-		Facebook.getLoginStatus(function(response) {
-			if(response.status === 'connected') {
-				debugger;
-				getAlbums();
-			} else {
-				Facebook.login(function(response) {
-					debugger;
-					getAlbums();
-				});
-			}
-		});
-	}
 }]);

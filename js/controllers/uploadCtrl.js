@@ -1,11 +1,26 @@
 'use strict';
-angular.module('mbApp.controllers').controller('uploadCtrl', ['$scope', '$document', '$modalInstance', 'fileStorage','$timeout', 'Facebook', function($scope, $document, $modalInstance, fileStorage, $timeout, Facebook) {
+angular.module('mbApp.controllers').controller('uploadCtrl', ['$scope', '$modalInstance', 'fileStorage', 'Facebook', function($scope, $modalInstance, fileStorage, Facebook) {
 
 	$scope.img = {src: ''};
 
 	$scope.uploadFromPc = function () {
 		$timeout(function() {
 			angular.element('#file').trigger('click');
+		});
+	};
+
+	$scope.uploadFromFb = function () {
+		debugger;
+		Facebook.getLoginStatus(function(response) {
+			if(response.status === 'connected') {
+				debugger;
+				getAlbums();
+			} else {
+				Facebook.login(function(response) {
+					debugger;
+					getAlbums();
+				});
+			}
 		});
 	};
 
