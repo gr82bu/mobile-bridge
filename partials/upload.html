@@ -1,5 +1,9 @@
-<div>
-    <input type="file" name="pcimage" id="imgUpload" multiple="" accept="image/*" style="" ng-model="selectedFile" ng-change="uploadFromPc(selectedFile)">
-    <!--<button class="btn btn-default" accept="image/*" ng-file-select ng-multiple="false" ng-model="selectedFile" resetOnClick="true">Upload from PC</button>-->
-    <!--<button class="btn btn-default" ng-click="uploadFromPc()"></button>-->
+<div style="height:300px;">
+    <div ng-if="!imgSrc">
+        <button class="btn btn-default" ng-click="uploadFromPc()">Upload From PC</button>
+        <input type="file" style="display:none" accept="image/*" id="file" name='file' ng-model="imgSrc" input-file-change/>
+    </div>
+    <div ng-if="imgSrc">
+        <img id="imgPreview" src=""/>
+    </div>
 </div>

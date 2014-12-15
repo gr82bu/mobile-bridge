@@ -22,6 +22,6 @@
     "angular-bootstrap": "latest",
     "angular-facebook": "~0.2.3",
     "FileSaver": "*",
-    "angular-file-upload": "~1.1.5"
+    "canvas-toBlob.js": "~0.1.3"
   }
 }
