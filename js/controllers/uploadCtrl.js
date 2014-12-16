@@ -10,17 +10,19 @@ angular.module('mbApp.controllers').controller('uploadCtrl', ['$scope', '$modalI
 	};
 
 	$scope.uploadFromFb = function () {
-		//Facebook.login(function(response) {
-		//	// Get user albums
-		//	Facebook.api('/me/albums',  function(resp) {
-		//		debugger;
-		//	});
-		//
-		//	//Get album photos
-		//	Facebook.api('/10150720583104914/photos',  function(resp) {
-		//		debugger;
-		//	});
-		//}, {scope: 'user_photos'});
+		$scope.showAlbum = function (albumId) {
+			$scope.fbAlbum = false;
+			$scope.fbAlbumPhotos = true;
+			Facebook.api('/'+albumId+'/photos',  function(photos) {
+				$scope.photos = photos.data;
+			});
+		};
+
+		$scope.previewFbPhoto = function (photoSrc) {
+			$scope.fbAlbum = false;
+			$scope.fbAlbumPhotos = false;
+			$scope.img.src = photoSrc;
+		};
 
 		Facebook.getLoginStatus(function(response) {
 			$scope.loggedIn = response.status === 'connected';
@@ -32,10 +34,18 @@ angular.module('mbApp.controllers').controller('uploadCtrl', ['$scope', '$modalI
 		});
 		$scope.$watch('loggedIn', function (status) {
 			if (status) {
-				Facebook.api('/me/albums',  function(resp) {
-					if (resp.data.length) {
-						angular.forEach(resp.data, function (obj) {
-							debugger;
+				Facebook.api('/me/albums',  function(albums) {
+					if (albums.data.length) {
+						$scope.fbAlbum = true;
+						$scope.albums = albums.data;
+						angular.forEach(albums.data, function (obj, ind) {
+							if (!obj.cover_photo) {
+								$scope.albums[ind].cover = 'https://www.facebook.com/images/photos/empty-album.png';
+							}
+							else
+								Facebook.api('/'+obj.cover_photo,  function(cover) {
+									$scope.albums[ind].cover = cover.images[0].source;
+								});
 						});
 					}
 				});
