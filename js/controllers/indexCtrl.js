@@ -50,7 +50,15 @@ angular.module('mbApp.controllers').controller('indexCtrl', ['$scope', '$statePa
 	};
 
 	$scope.edit = function (file) {
-
+		var editModal = $modal.open({
+			templateUrl: '/partials/edit.html',
+			controller: 'editCtrl',
+			resolve: {
+				document: function () {
+					return file;
+				}
+			}
+		});
 	};
 
 	$scope.upload = function () {
