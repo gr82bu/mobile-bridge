@@ -1,8 +1,4 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,12 +6,15 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-
-        <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/font-awesome.min.css">
-        <link rel="stylesheet" href="css/main.css">
+        <style>
+            .table-view {
+                width: 70%;
+                margin: 5% auto;
+            }
+            .margin-top-15 { margin-top: 1.5em; }
+        </style>
     </head>
     <body ng-app="mbApp">
 
@@ -25,7 +24,7 @@
                     <div class="col-md-3">
                         <div class="input-group">
                             <input type="search" class="form-control" placeholder="search" ng-model="filter.name">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                            <span class="input-group-addon"><i class="fa fa-search"></i></span>
                         </div>
                     </div>
                 </div>
@@ -34,9 +33,9 @@
                         <table class="table table-hover">
                             <thead>
                             <tr ng-init="order = 'name'; asc = false">
-                                <th style="cursor: pointer" ng-click="order = 'name'; asc = asc ? false : true">File Name <i ng-show="order == 'name'" class="glyphicon glyphicon-chevron-{{asc ? 'down' : 'up'}}"></i></th>
-                                <th style="cursor: pointer" ng-click="order = 'type'; asc = asc ? false : true">File Type <i ng-show="order == 'type'" class="glyphicon glyphicon-chevron-{{asc ? 'down' : 'up'}}"></i></th>
-                                <th style="cursor: pointer" ng-click="order = 'data.length'; asc = asc ? false : true">Size (Kb) <i ng-show="order == 'data.length'" class="glyphicon glyphicon-chevron-{{asc ? 'down' : 'up'}}"></i></th>
+                                <th style="cursor: pointer" ng-click="order = 'name'; asc = asc ? false : true">File Name <i ng-show="order == 'name'" class="fa fa-chevron-{{asc ? 'down' : 'up'}}"></i></th>
+                                <th style="cursor: pointer" ng-click="order = 'type'; asc = asc ? false : true">File Type <i ng-show="order == 'type'" class="fa fa-chevron-{{asc ? 'down' : 'up'}}"></i></th>
+                                <th style="cursor: pointer" ng-click="order = 'data.length'; asc = asc ? false : true">Size (Kb) <i ng-show="order == 'data.length'" class="fa fa-chevron-{{asc ? 'down' : 'up'}}"></i></th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -47,10 +46,10 @@
                                 <td>{{ fileSize(file) | number }}</td>
                                 <td>
                                     <div class="action">
-                                        <a href="javascript:" ng-click="bookmark(file)"><i class="glyphicon glyphicon-star" ng-style="{color: file.bookmarked ? 'darkorange' : 'darkgrey'}"></i></a>
-                                        <button type="button" class="btn btn-default btn-sm" ng-click="download(file)"><i class="glyphicon glyphicon-download-alt"></i> Download</button>
-                                        <button type="button" class="btn btn-default btn-sm" ng-click="preview(file)" ng-if="file.type!=='text'"><i class="glyphicon glyphicon-eye-open"></i> Preview</button>
-                                        <button type="button" class="btn btn-default btn-sm" ng-click="edit(file)" ng-if="file.type!=='image'"><i class="glyphicon glyphicon-edit"></i> Edit</button>
+                                        <a href="javascript:" ng-click="bookmark(file)"><i class="fa fa-star" ng-style="{color: file.bookmarked ? 'darkorange' : 'darkgrey'}"></i></a>
+                                        <button type="button" class="btn btn-default btn-sm" ng-click="download(file)"><i class="fa fa-download"></i> Download</button>
+                                        <button type="button" class="btn btn-default btn-sm" ng-click="preview(file)" ng-if="file.type!=='text'"><i class="fa fa-eye"></i> Preview</button>
+                                        <button type="button" class="btn btn-default btn-sm" ng-click="edit(file)" ng-if="file.type!=='image'"><i class="fa fa-edit"></i> Edit</button>
                                         <!--Select file by clicking the row-->
                                     </div>
                                 </td>
@@ -60,26 +59,21 @@
                     </div>
                 </div>
                 <div class="row margin-top-15">
-                    <div class="col-md-2">
-                        <button type="button" class="btn btn-default btn-block" ng-class="{active: !filter.bookmarked}" ng-click="filter={name: filter.name}"><i class="glyphicon glyphicon-list"></i> File List</button>
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-default" ng-class="{active: !filter.bookmarked}" ng-click="filter={name: filter.name}"><i class="fa fa-list"></i> File List</button>
+                        <button type="button" class="btn btn-default" ng-class="{active: filter.bookmarked}" ng-click="filter.bookmarked=true"><i class="fa fa-bookmark"></i> Bookmarks</button>
                     </div>
-                    <div class="col-md-2">
-                        <button type="button" class="btn btn-default btn-block" ng-class="{active: filter.bookmarked}" ng-click="filter.bookmarked=true"><i class="glyphicon glyphicon-bookmark"></i> Bookmarks</button>
-                    </div>
-                    <div class="col-md-2 col-md-offset-4">
-                        <button type="button" class="btn btn-default btn-block" ng-click="upload()"><i class="glyphicon glyphicon-arrow-up"></i> Upload</button>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="btn-group" dropdown is-open="status.isopen">
-                            <button type="button" class="btn btn-default btn-block dropdown-toggle" dropdown-toggle>
-                                <i class="glyphicon glyphicon-plus"></i> Create New <span class="caret"></span>
+                    <div class="col-md-6">
+                        <div class="btn-group pull-right" dropdown is-open="status.isopen">
+                            <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle>
+                                <i class="fa fa-plus"></i> Create New <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" role="menu">
                                 <li ng-click="add('html')"><a href="#">html</a></li>
                                 <li ng-click="add('text')"><a href="#">text</a></li>
                             </ul>
                         </div>
-                        <!--<button type="button" class="btn btn-default btn-block"><i class="glyphicon glyphicon-plus"></i> Create New</button>-->
+                        <button type="button" class="btn btn-default pull-right" ng-click="upload()"><i class="fa fa-upload"></i> Upload</button>
                     </div>
                 </div>
             </div>
