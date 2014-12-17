@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-3">
             <div class="input-group">
-                <input type="search" class="form-control" placeholder="search" ng-model="filter" ng-change="filterByName()">
+                <input type="search" class="form-control" placeholder="search" ng-model="filter.name">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
             </div>
         </div>
@@ -19,7 +19,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="file in files" ng-click="">
+                    <tr class="animate-repeat" ng-repeat="file in files | filter:filter" ng-click="">
                         <td>{{ file.name }}</td>
                         <td>{{ file.type }}</td>
                         <td>{{ fileSize(file) | number }}</td>
@@ -39,10 +39,10 @@
     </div>
     <div class="row margin-top-15">
         <div class="col-md-2">
-            <button type="button" class="btn btn-default btn-block" ng-class="{active: !bookmarks}" ng-click="bookmarks=false"><i class="glyphicon glyphicon-list"></i> File List</button>
+            <button type="button" class="btn btn-default btn-block" ng-class="{active: !filter.bookmarked}" ng-click="filter={}"><i class="glyphicon glyphicon-list"></i> File List</button>
         </div>
         <div class="col-md-2">
-            <button type="button" class="btn btn-default btn-block" ng-class="{active: bookmarks}" ng-click="bookmarks=true"><i class="glyphicon glyphicon-bookmark"></i> Bookmarks</button>
+            <button type="button" class="btn btn-default btn-block" ng-class="{active: filter.bookmarked}" ng-click="filter.bookmarked=true"><i class="glyphicon glyphicon-bookmark"></i> Bookmarks</button>
         </div>
         <div class="col-md-2 col-md-offset-4">
             <button type="button" class="btn btn-default btn-block" ng-click="upload()"><i class="glyphicon glyphicon-arrow-up"></i> Upload</button>

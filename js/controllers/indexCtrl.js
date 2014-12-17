@@ -1,20 +1,9 @@
 'use strict';
 angular.module('mbApp.controllers').controller('indexCtrl', ['$scope', '$stateParams', '$modal', 'fileStorage', 'Facebook', function($scope, $stateParams, $modal, fileStorage, Facebook) {
+	$scope.files = fileStorage;
 
-	$scope.filterByName = function () {
-		$scope.files = _.filter(_.sortBy(fileStorage, 'name'), function (obj) {
-			return obj.name.search($scope.filter)>-1;
-		});
-	};
-
-	// Bookmarks mechanism
-	$scope.$watch('bookmarks', function (val) {
-		var files = val ? _.where(fileStorage, {bookmarked: true}) : fileStorage;
-		$scope.files = _.sortBy(files, 'name');
-	});
-
-	function fileDataUrl(file) {
-		return 'data:' + file.mime + ';base64,' + file.data;
+	function imgDataUrl(file) {
+		return 'data:image/png;base64,' + file.data;
 	}
 
 	function b64EncodeUnicode(str) {
@@ -43,7 +32,7 @@ angular.module('mbApp.controllers').controller('indexCtrl', ['$scope', '$statePa
 				var ctx,
 					img = new Image,
 					canvas = document.createElement("canvas");
-				img.src = fileDataUrl(file);
+				img.src = imgDataUrl(file);
 				canvas.width = img.width;
 				canvas.height = img.height;
 				ctx = canvas.getContext("2d");
@@ -57,10 +46,19 @@ angular.module('mbApp.controllers').controller('indexCtrl', ['$scope', '$statePa
 
 	$scope.bookmark = function (file) {
 		file.bookmarked = file.bookmarked ? false : true;
+		$scope.$root.$broadcast('fileChanged');
 	};
 
 	$scope.preview = function (file) {
-
+		var previewModal = $modal.open({
+			templateUrl: '/partials/preview.html',
+			controller: 'editCtrl',
+			resolve: {
+				document: function () {
+					return file;
+				}
+			}
+		});
 	};
 
 	$scope.edit = function (file) {
@@ -79,6 +77,9 @@ angular.module('mbApp.controllers').controller('indexCtrl', ['$scope', '$statePa
 		var uploadModal = $modal.open({
 			templateUrl: '/partials/upload.html',
 			controller: 'uploadCtrl'
+		});
+		uploadModal.result.then(function(file) {
+			fileStorage.push(file);
 		});
 	};
 }]);

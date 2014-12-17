@@ -10,6 +10,7 @@ angular.module('mbApp.controllers').controller('uploadCtrl', ['$scope', '$modalI
 	};
 
 	$scope.uploadFromFb = function () {
+
 		$scope.showAlbum = function (albumId) {
 			$scope.fbAlbum = false;
 			$scope.fbAlbumPhotos = true;
@@ -21,7 +22,18 @@ angular.module('mbApp.controllers').controller('uploadCtrl', ['$scope', '$modalI
 		$scope.previewFbPhoto = function (photoSrc) {
 			$scope.fbAlbum = false;
 			$scope.fbAlbumPhotos = false;
-			$scope.img.src = photoSrc;
+			var img = new Image,
+				canvas = document.createElement("canvas"),
+				ctx = canvas.getContext("2d");
+			img.crossOrigin = "Anonymous";
+			img.src = photoSrc;
+			img.onload = function() {
+				canvas.width = img.width;
+				canvas.height = img.height;
+				ctx.drawImage( img, 0, 0 );
+				$scope.img.src = canvas.toDataURL("image/png");
+				$scope.$apply();
+			};
 		};
 
 		Facebook.getLoginStatus(function(response) {
@@ -32,6 +44,7 @@ angular.module('mbApp.controllers').controller('uploadCtrl', ['$scope', '$modalI
 				},{scope: 'user_photos'});
 			}
 		});
+
 		$scope.$watch('loggedIn', function (status) {
 			if (status) {
 				Facebook.api('/me/albums',  function(albums) {
@@ -51,6 +64,12 @@ angular.module('mbApp.controllers').controller('uploadCtrl', ['$scope', '$modalI
 				});
 			}
 		});
+	};
+
+	$scope.saveImg = function (imgSrc) {
+		var data = imgSrc.split(',')[1];
+		$modalInstance.close({ id: guid(), name: 'test.png', type: 'image', data: data, bookmarked: false });
+		//fileStorage.push();
 	};
 
 	$scope.$watch('img.src', function (dataUrl) {

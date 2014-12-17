@@ -18,8 +18,8 @@
             <img ng-src="{{photo.source}}" style="max-width: 100px; height: 100px;"/>
         </a>
     </div>
-    <div class="pull-right">
+    <div class="pull-right margin-top-15">
         <button class="btn btn-default" ng-click="$dismiss()">Cancel</button>
-        <button ng-if="img.src" class="btn btn-default" ng-click="saveImg()">Save</button>
+        <button ng-if="img.src" class="btn btn-default" ng-click="saveImg(img.src)">Save</button>
     </div>
 </div>
