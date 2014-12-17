@@ -3,9 +3,9 @@
     <div class="row margin-top-15">
         <div class="col-sm-4 col-md-offset-4">
             <div ng-if="!file.id" class="input-group">
-                <input type="text" class="form-control" ng-model="img.name" placeholder="file name">
+                <input type="text" class="form-control" ng-model="file.name" placeholder="file name">
                 <span class="input-group-btn">
-                    <button class="btn btn-default" type="button" ng-click="saveImg(img)">Save</button>
+                    <button class="btn btn-default" type="button" ng-click="save()">Save</button>
                 </span>
             </div>
         </div>

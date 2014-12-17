@@ -45,7 +45,6 @@ angular
                 iconclass: "fa fa-picture-o",
                 action: function($deferred, restoreSelection) {
                     var textAngular = this;
-                    //var savedSelection = rangy.saveSelection();
                     var modalInstance = $modal.open({
                         // Put a link to your template here or whatever
                         templateUrl: '/partials/select.html',
@@ -56,18 +55,11 @@ angular
                                 $scope.imgSrc = function (fileData) {
                                     return 'data:image/png;base64,' + fileData;
                                 };
-                                $scope.img = {
-                                    url: ''
-                                };
-                                $scope.submit = function() {
-                                    $modalInstance.close($scope.img.url);
-                                };
                             }
                         ]
                     });
 
                     modalInstance.result.then(function(imgUrl) {
-                        //rangy.restoreSelection(savedSelection);
                         restoreSelection();
                         textAngular.$editor().wrapSelection('insertImage', imgUrl);
                         $deferred.resolve();

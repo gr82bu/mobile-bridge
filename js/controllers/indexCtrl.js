@@ -6,12 +6,6 @@ angular.module('mbApp.controllers').controller('indexCtrl', ['$scope', '$modal',
 		return 'data:image/png;base64,' + file.data;
 	}
 
-	//function b64EncodeUnicode(str) {
-	//	return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function(match, p1) {
-	//		return String.fromCharCode('0x' + p1);
-	//	}));
-	//}
-
 	// File size calculation
 	$scope.fileSize = function (file) {
 		return atob(file.data).length;
@@ -89,9 +83,12 @@ angular.module('mbApp.controllers').controller('indexCtrl', ['$scope', '$modal',
 			controller: 'editCtrl',
 			resolve: {
 				document: function () {
-					return { type: fileType, data: '' };
+					return { name: '', type: fileType, data: '' };
 				}
 			}
+		});
+		addModal.result.then(function(file) {
+			fileStorage.push(file);
 		});
 	};
 }]);

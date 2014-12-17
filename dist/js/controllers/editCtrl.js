@@ -15,7 +15,14 @@ angular.module('mbApp.controllers').controller('editCtrl', ['$scope', '$modalIns
 
 	$scope.save = function () {
 		document.data = utils.b64EncodeUnicode($scope.content);
-		$scope.$root.$broadcast('fileChanged');
-		$modalInstance.dismiss();
+		if(document.id) {
+			$scope.$root.$broadcast('fileChanged');
+			$modalInstance.dismiss();
+		}
+		else {
+			document.id = guid()
+			document.name = document.name || 'new file';
+			$modalInstance.close(document);
+		}
 	};
 }]);
