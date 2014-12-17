@@ -56,10 +56,14 @@ angular
                     //var savedSelection = rangy.saveSelection();
                     var modalInstance = $modal.open({
                         // Put a link to your template here or whatever
-                        template: '<label>Enter the url to your image:</label><input type="text" ng-model="img.url"><button ng-click="submit()">OK</button>',
+                        templateUrl: '/partials/select.html',
                         size: 'sm',
-                        controller: ['$modalInstance', '$scope',
-                            function($modalInstance, $scope) {
+                        controller: ['$modalInstance', '$scope', 'fileStorage',
+                            function($modalInstance, $scope, fileStorage) {
+                                $scope.photos = _.where(fileStorage, {type: 'image'});
+                                $scope.imgSrc = function (fileData) {
+                                    return 'data:image/png;base64,' + fileData;
+                                };
                                 $scope.img = {
                                     url: ''
                                 };

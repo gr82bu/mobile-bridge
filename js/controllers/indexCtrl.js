@@ -82,4 +82,16 @@ angular.module('mbApp.controllers').controller('indexCtrl', ['$scope', '$statePa
 			fileStorage.push(file);
 		});
 	};
+
+	$scope.add = function (fileType) {
+		var addModal = $modal.open({
+			templateUrl: '/partials/edit.html',
+			controller: 'editCtrl',
+			resolve: {
+				document: function () {
+					return { type: fileType, data: '' };
+				}
+			}
+		});
+	};
 }]);

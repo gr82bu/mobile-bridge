@@ -1,7 +1,17 @@
 <div class="row" style="min-height:160px; padding: 30px;">
-    <div text-angular ng-model="content" ta-toolbar="[['bold','italics', 'underline', 'strikethrough', 'localImage']]"></div>
-    <div class="pull-right">
-        <button class="btn btn-default" ng-click="$dismiss()">Cancel</button>
-        <button class="btn btn-default" ng-click="save()">Save</button>
+    <div text-angular ng-model="content" ta-toolbar="[file.type=='html' ? ['bold','italics', 'underline', 'strikethrough', 'localImage'] : ['bold','italics', 'underline', 'strikethrough']]"></div>
+    <div class="row margin-top-15">
+        <div class="col-sm-4 col-md-offset-4">
+            <div ng-if="!file.id" class="input-group">
+                <input type="text" class="form-control" ng-model="img.name" placeholder="file name">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" ng-click="saveImg(img)">Save</button>
+                </span>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <button ng-if="file.id" class="btn btn-default" ng-click="save()">Save</button>
+            <button class="btn btn-default" ng-click="$dismiss()">Cancel</button>
+        </div>
     </div>
 </div>

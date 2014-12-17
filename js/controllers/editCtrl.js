@@ -1,5 +1,6 @@
 'use strict';
 angular.module('mbApp.controllers').controller('editCtrl', ['$scope', '$modalInstance', '$timeout', 'fileStorage', 'document', 'utils', function($scope, $modalInstance, $timeout, fileStorage, document, utils) {
+	$scope.file = document;
 	switch (document.type) {
 		case 'text':
 			$scope.content = atob(document.data);
