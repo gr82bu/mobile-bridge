@@ -11,15 +11,15 @@
         <div class="col-md-12 table-responsive">
             <table class="table table-hover">
                 <thead>
-                    <tr>
-                        <th>File Name</th>
-                        <th>File Type</th>
-                        <th>Size (Kb)</th>
+                    <tr ng-init="order = 'name'; asc = false">
+                        <th style="cursor: pointer" ng-click="order = 'name'; asc = asc ? false : true">File Name <i ng-show="order == 'name'" class="glyphicon glyphicon-chevron-{{asc ? 'down' : 'up'}}"></i></th>
+                        <th style="cursor: pointer" ng-click="order = 'type'; asc = asc ? false : true">File Type <i ng-show="order == 'type'" class="glyphicon glyphicon-chevron-{{asc ? 'down' : 'up'}}"></i></th>
+                        <th style="cursor: pointer" ng-click="order = 'data.length'; asc = asc ? false : true">Size (Kb) <i ng-show="order == 'data.length'" class="glyphicon glyphicon-chevron-{{asc ? 'down' : 'up'}}"></i></th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="animate-repeat" ng-repeat="file in files | filter:filter" ng-click="">
+                    <tr class="animate-repeat" ng-repeat="file in files | filter:filter | orderBy:order:asc">
                         <td>{{ file.name }}</td>
                         <td>{{ file.type }}</td>
                         <td>{{ fileSize(file) | number }}</td>
@@ -39,7 +39,7 @@
     </div>
     <div class="row margin-top-15">
         <div class="col-md-2">
-            <button type="button" class="btn btn-default btn-block" ng-class="{active: !filter.bookmarked}" ng-click="filter={}"><i class="glyphicon glyphicon-list"></i> File List</button>
+            <button type="button" class="btn btn-default btn-block" ng-class="{active: !filter.bookmarked}" ng-click="filter={name: filter.name}"><i class="glyphicon glyphicon-list"></i> File List</button>
         </div>
         <div class="col-md-2">
             <button type="button" class="btn btn-default btn-block" ng-class="{active: filter.bookmarked}" ng-click="filter.bookmarked=true"><i class="glyphicon glyphicon-bookmark"></i> Bookmarks</button>

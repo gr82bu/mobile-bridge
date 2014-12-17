@@ -39,12 +39,13 @@ angular.module('mbApp.services').factory('fileStorage', ['$rootScope', function 
 		window.alert('Your browser does not support localStorage, you won\'t be able to edit or add new files');
 	}
 
+	// Used to track file addition
 	$rootScope.$watchCollection(function () { return fileStorage; }, function (newVal) {
-		debugger;
 		localStorage.setItem("mbData", angular.toJson(newVal));
 	});
+
+	// Used to track file changes
 	$rootScope.$on('fileChanged', function () {
-		debugger;
 		localStorage.setItem("mbData", angular.toJson(fileStorage));
 	});
 	return fileStorage;
