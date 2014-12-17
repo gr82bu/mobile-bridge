@@ -8,16 +8,12 @@
   "devDependencies": {
     "grunt-contrib-concat": "~0.5.0",
     "grunt-contrib-cssmin": "~0.10.0",
-    "grunt-contrib-imagemin": "~0.7.1",
-    "grunt-contrib-compress": "~0.10.0",
     "grunt-contrib-uglify": "~0.5.1",
     "grunt-filerev": "~2.1.0",
     "grunt-usemin": "~2.4.0",
-    "grunt-contrib-watch": "~0.6.1",
     "grunt-angular-templates": "~0.5.7",
     "grunt-contrib-copy": "~0.6.0",
-    "grunt-contrib-clean": "~0.6.0",
-    "grunt-auto-install": "~0.2.2"
+    "grunt-contrib-clean": "~0.6.0"
   },
   "scripts": {
     "postinstall": "bower install"
