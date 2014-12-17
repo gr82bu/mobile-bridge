@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "index.html",
+    "type": "html",
+    "size": 11,
+    "content": ""
+  },
+  {
+    "id": 2,
+    "name": "info.txt",
+    "type": "text",
+    "size": 12,
+    "content": ""
+  },
+  {
+    "id": 3,
+    "name": "photo.png",
+    "type": "image",
+    "size": 13,
+    "content": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANwAAAEVCAYAAACLyotJAAAgAElEQ…+FI9AB5IhaCNLNG1NwkKxjKaT8vh29eLeqZwCqnOXu/wdJmecUMQLFwQAAAABJRU5ErkJggg=="
+  }
+]
