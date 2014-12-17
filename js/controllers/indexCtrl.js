@@ -30,10 +30,10 @@ angular.module('mbApp.controllers').controller('indexCtrl', ['$scope', '$statePa
 
 	$scope.download = function (file) {
 		var blob;
-		switch (type) {
+		switch (file.type) {
 			case 'text':
-				blob = new Blob([atob(file.data)], {type: file.mime});
-				saveAs(htmlDocx.asBlob(atob(file.data)), file.name);
+				var doc = '<!DOCTYPE html><body>'+atob(file.data)+'</body>';
+				saveAs(htmlDocx.asBlob(doc), file.name);
 				break;
 			case 'html':
 				blob = new Blob([atob(file.data)], {type: 'text/html'});
@@ -52,24 +52,6 @@ angular.module('mbApp.controllers').controller('indexCtrl', ['$scope', '$statePa
 					saveAs(blob, file.name);
 				});
 				break;
-		}
-		if (file.type != 'image') {
-			var blob = new Blob([atob(file.data)], {type: file.mime});
-			console.log(htmlDocx.asBlob(atob(file.data)));
-			saveAs(blob, file.name);
-		}
-		else {
-			var ctx,
-				img = new Image,
-				canvas = document.createElement("canvas");
-			img.src = fileDataUrl(file);
-			canvas.width = img.width;
-			canvas.height = img.height;
-			ctx = canvas.getContext("2d");
-			ctx.drawImage(img, 0, 0);
-			canvas.toBlob(function (blob) {
-				saveAs(blob, file.name);
-			});
 		}
 	};
 

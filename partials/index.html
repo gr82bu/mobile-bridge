@@ -25,10 +25,10 @@
                         <td>{{ fileSize(file) | number }}</td>
                         <td>
                             <div class="action">
+                                <a href="javascript:" ng-click="bookmark(file)"><i class="glyphicon glyphicon-star" ng-style="{color: file.bookmarked ? 'darkorange' : 'darkgrey'}"></i></a>
                                 <button type="button" class="btn btn-default btn-sm" ng-click="download(file)"><i class="glyphicon glyphicon-download-alt"></i> Download</button>
-                                <button type="button" class="btn btn-default btn-sm" ng-click="preview(file)"><i class="glyphicon glyphicon-eye-open"></i> Preview</button>
-                                <button type="button" class="btn btn-default btn-sm" ng-click="bookmark(file)"><i class="glyphicon glyphicon-star"></i> Bookmark</button>
-                                <button type="button" class="btn btn-default btn-sm" ng-click="edit(file)"><i class="glyphicon glyphicon-edit"></i> Edit</button>
+                                <button type="button" class="btn btn-default btn-sm" ng-click="preview(file)" ng-if="file.type!=='text'"><i class="glyphicon glyphicon-eye-open"></i> Preview</button>
+                                <button type="button" class="btn btn-default btn-sm" ng-click="edit(file)" ng-if="file.type!=='image'"><i class="glyphicon glyphicon-edit"></i> Edit</button>
                                 <!--Select file by clicking the row-->
                             </div>
                         </td>

@@ -6,23 +6,21 @@ angular.module('mbApp.services').factory('fileStorage', ['$rootScope', function 
 		if (!fileStorage) {
 			fileStorage = [
 				{
-					"id": 1,
+					"id": '1bb2e13f-d997-9204-ac2f-6f855467ab1f',
 					"name": "index.html",
-					"mime": "text/html",
+					"type": "html",
 					"data": "PGEgaHJlZj0iIyI+SGVsbG8gV29ybGQhPC9hPg==",
-					"content": '<a href="#">Hello World!</a>',
 					"bookmarked": false
 				},
 				{
-					"id": 2,
+					"id": '8747229d-ce35-debb-7b59-a9d300577151',
 					"name": "info.docx",
-					"mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-					"content": '<!DOCTYPE html><body><p><b>nghgfnh</b></p></body>',
-					"data": "PCFET0NUWVBFIGh0bWw+PGJvZHk+PHA+PGI+bmdoZ2ZuaDwvYj48L3A+PC9ib2R5Pg==",
+					"type": "text",
+					"data": "PHA+PGI+bmdoZ2ZuaDwvYj48L3A+",
 					"bookmarked": true
 				},
 				{
-				    "id": 3,
+				    "id": '66c9d0c1-bcc9-815d-03e0-bbf255c69e6d',
 				    "name": "photo.png",
 				    "type": "image",
 					"mime": "image/png",
