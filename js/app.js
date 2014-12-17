@@ -21,22 +21,14 @@ angular
         'mbApp.controllers',
         'mbApp.services',
         'mbApp.directives',
-        'ui.router',
         'ui.bootstrap',
         'textAngular',
         'facebook'
     ])
     .config([
-        '$stateProvider',
         'FacebookProvider',
-        function ($stateProvider, FacebookProvider) {
+        function (FacebookProvider) {
             FacebookProvider.init('821914054533130');
-            $stateProvider
-                .state('index', {
-                    url: '?bookmarks',
-                    controller: "indexCtrl",
-                    templateUrl: "/partials/index.html"
-                })
         }])
     .config(['$provide', function ($provide) {
         $provide.decorator('taOptions', ['taRegisterTool', '$modal', '$delegate', function(taRegisterTool, $modal, taOptions){

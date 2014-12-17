@@ -6,10 +6,8 @@ module.exports = (grunt) ->
     pkg: grunt.file.readJSON 'package.json'
 
     app:
-      src: 'app'
       dest: 'dist'
-      bower: '<%= app.src %>/bower_components'
-      images: '<%= app.src %>/images'
+      bower: 'bower_components'
       css: '<%= app.src %>/css'
       js: '<%= app.src %>/js'
       partials: '<%= app.src %>/partials'
@@ -137,10 +135,12 @@ module.exports = (grunt) ->
         mangle: false
 
     ngtemplates:
-      peeps:
-        cwd: '<%= app.src %>'
-        src: 'partials/**/*.html'
-        dest: '<%= app.js %>/partials.js'
+      'mbApp.services':
+        cwd: ''
+        src: 'partials/*.html'
+        dest: 'js/partials.js'
+        options:
+          prefix: '/'
 
     watch:
       options:

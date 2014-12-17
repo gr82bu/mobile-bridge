@@ -1,5 +1,5 @@
 'use strict';
-angular.module('mbApp.controllers').controller('indexCtrl', ['$scope', '$stateParams', '$modal', 'fileStorage', 'Facebook', 'utils', function($scope, $stateParams, $modal, fileStorage, Facebook, utils) {
+angular.module('mbApp.controllers').controller('indexCtrl', ['$scope', '$modal', 'fileStorage', function($scope, $modal, fileStorage) {
 	$scope.files = fileStorage;
 
 	function imgDataUrl(file) {
