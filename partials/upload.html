@@ -18,8 +18,18 @@
             <img ng-src="{{photo.source}}" style="max-width: 100px; height: 100px;"/>
         </a>
     </div>
-    <div class="pull-right margin-top-15">
-        <button class="btn btn-default" ng-click="$dismiss()">Cancel</button>
-        <button ng-if="img.src" class="btn btn-default" ng-click="saveImg(img.src)">Save</button>
+    <div class="row margin-top-15">
+        <div class="col-sm-4 col-md-offset-6">
+            <div ng-if="img.src" class="input-group">
+                <input type="text" class="form-control" ng-model="img.name" placeholder="file name">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" ng-click="saveImg(img)">Save</button>
+                </span>
+            </div>
+        </div>
+
+        <div class="col-sm-2">
+            <button class="btn btn-default" ng-click="$dismiss()">Cancel</button>
+        </div>
     </div>
 </div>

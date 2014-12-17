@@ -66,9 +66,10 @@ angular.module('mbApp.controllers').controller('uploadCtrl', ['$scope', '$modalI
 		});
 	};
 
-	$scope.saveImg = function (imgSrc) {
-		var data = imgSrc.split(',')[1];
-		$modalInstance.close({ id: guid(), name: 'test.png', type: 'image', data: data, bookmarked: false });
+	$scope.saveImg = function (img) {
+		debugger;
+		var data = img.src.split(',')[1];
+		$modalInstance.close({ id: guid(), name: (img.name || 'new file') + '.png', type: 'image', data: data });
 		//fileStorage.push();
 	};
 

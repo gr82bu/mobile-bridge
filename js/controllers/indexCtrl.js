@@ -1,16 +1,16 @@
 'use strict';
-angular.module('mbApp.controllers').controller('indexCtrl', ['$scope', '$stateParams', '$modal', 'fileStorage', 'Facebook', function($scope, $stateParams, $modal, fileStorage, Facebook) {
+angular.module('mbApp.controllers').controller('indexCtrl', ['$scope', '$stateParams', '$modal', 'fileStorage', 'Facebook', 'utils', function($scope, $stateParams, $modal, fileStorage, Facebook, utils) {
 	$scope.files = fileStorage;
 
 	function imgDataUrl(file) {
 		return 'data:image/png;base64,' + file.data;
 	}
 
-	function b64EncodeUnicode(str) {
-		return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function(match, p1) {
-			return String.fromCharCode('0x' + p1);
-		}));
-	}
+	//function b64EncodeUnicode(str) {
+	//	return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function(match, p1) {
+	//		return String.fromCharCode('0x' + p1);
+	//	}));
+	//}
 
 	// File size calculation
 	$scope.fileSize = function (file) {

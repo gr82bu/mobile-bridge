@@ -49,4 +49,14 @@ angular.module('mbApp.services').factory('fileStorage', ['$rootScope', function 
 		localStorage.setItem("mbData", angular.toJson(fileStorage));
 	});
 	return fileStorage;
-}]);
+}])
+	.factory('utils', ['$rootScope', function ($rootScope) {
+		var utils = {
+			b64EncodeUnicode: function(str) {
+				return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function(match, p1) {
+					return String.fromCharCode('0x' + p1);
+				}));
+			}
+		}
+		return utils;
+	}]);
