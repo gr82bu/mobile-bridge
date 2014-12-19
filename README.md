@@ -2,6 +2,7 @@ file-manager
 ============
 
 Task for some company to build file manager demo, working solely on client side using localStorage, with ability to create/edit html and rich text documents and upload images from computer or facebook albums.
+
 Task requirements are given in requirements.pdf.
 
 
